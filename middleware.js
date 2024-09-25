@@ -1,0 +1,58 @@
+// middleware.js
+import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
+
+// Define the middleware function
+export async function middleware(req) {
+  // Retrieve the JWT token from the request
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+
+  // Define the URL paths for different roles
+  const adminPaths = ["/admin/login", "/admin/register"];
+  const customerPaths = ["/customer/login", "/customer/register"];
+
+  // Get the current URL path
+  const url = req.nextUrl.clone();
+
+  // Check if the user is authenticated
+  const isAuthenticated = !!token;
+
+  // Check if the user is trying to access restricted pages
+  if (isAuthenticated) {
+    const userRole = token.role;
+
+    // Restrict access based on role
+    if (userRole === "admin") {
+      if (adminPaths.includes(url.pathname)) {
+        // Redirect authenticated sellers away from login/register pages
+        return NextResponse.redirect(new URL("/admin/dashboard", req.url));
+      }
+    } else if (userRole === "customer") {
+      if (customerPaths.includes(url.pathname)) {
+        // Redirect authenticated buyers away from login/register pages
+        return NextResponse.redirect(new URL("/customer/dashboard", req.url));
+      }
+    }
+  } else {
+    // Redirect unauthenticated users trying to access protected pages
+    if (
+      url.pathname.startsWith("/admin") &&
+      !adminPaths.includes(url.pathname)
+    ) {
+      return NextResponse.redirect(new URL("/admin/login", req.url));
+    }
+    if (
+      url.pathname.startsWith("/customer") &&
+      !customerPaths.includes(url.pathname)
+    ) {
+      return NextResponse.redirect(new URL("/customer/login", req.url));
+    }
+  }
+
+  return NextResponse.next();
+}
+
+// Specify the paths to apply middleware
+export const config = {
+  matcher: ["/admin/:path*", "/customer/:path*"],
+};
