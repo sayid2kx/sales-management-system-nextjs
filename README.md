@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sales Management System
+
+This project is a Sales Management System built with **Next.js**, **Tailwind CSS**, **NextAuth.js**, and **MongoDB**. It is designed for sellers to manage their products and sales, while customers can browse and purchase products.
+
+## Features
+
+### Seller Features
+
+- Register and log in as a seller.
+- Add new products to the system.
+- View sales information after a customer purchases a product.
+- See who purchased products.
+- View total sales and available products.
+- Each Seller have individual profile.
+
+### Customer Features
+
+- Register and log in as a customer.
+- View all available products.
+- Purchase products from the dashboard.
+- View purchase history in the Order page.
+- Each Customer have individual profile.
+- View detailed information about each product and its seller.
 
 ## Getting Started
 
-First, run the development server:
+### Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+git clone https://github.com/sayid2kx/sales-management-system-nextjs.git
+cd sales-management-system-nextjs
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env` file in the root of the project and add the following variables:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```text
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+DATABASE_URL="mongodb://localhost:27017/<your-database-name>"
+NEXTAUTH_SECRET="your secret"
+NEXTAUTH_URL="base URL"
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+Replace <your-database-name> and other placeholders with your actual values.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Install Dependencies and Run the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
 
-## Deploy on Vercel
+npm install
+npm run dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This will start the development server, and you can access the application at `http://localhost:3000`.
