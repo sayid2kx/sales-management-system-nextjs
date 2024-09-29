@@ -111,7 +111,7 @@ export default function SellsHistoryPage() {
                           className="mb-3 p-3 bg-gray-50 rounded-lg"
                         >
                           <p className="font-medium text-gray-800">
-                            {order.product.title} - {order.quantity} pcs
+                            {order.product.title} - {order.quantity} items
                           </p>
                           <p className="text-sm text-gray-600">
                             💰 {order.totalPrice} BDT

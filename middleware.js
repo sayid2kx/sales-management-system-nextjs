@@ -2,49 +2,50 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-// Define the middleware function
 export async function middleware(req) {
-  // Retrieve the JWT token from the request
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  const { pathname } = req.nextUrl;
 
-  // Define the URL paths for different roles
-  const sellerPaths = ["/seller/login", "/seller/register"];
-  const customerPaths = ["/customer/login", "/customer/register"];
+  const publicRoutes = [
+    "/",
+    "/seller/login",
+    "/seller/register",
+    "/customer/login",
+    "/customer/register",
+  ];
 
-  // Get the current URL path
-  const url = req.nextUrl.clone();
-
-  // Check if the user is authenticated
-  const isAuthenticated = !!token;
-
-  // Check if the user is trying to access restricted pages
-  if (isAuthenticated) {
+  if (token) {
     const userRole = token.role;
 
-    // Restrict access based on role
-    if (userRole === "seller") {
-      if (sellerPaths.includes(url.pathname)) {
-        // Redirect authenticated sellers away from login/register pages
+    if (publicRoutes.includes(pathname)) {
+      if (userRole === "seller") {
         return NextResponse.redirect(new URL("/seller/dashboard", req.url));
-      }
-    } else if (userRole === "customer") {
-      if (customerPaths.includes(url.pathname)) {
-        // Redirect authenticated buyers away from login/register pages
+      } else if (userRole === "customer") {
         return NextResponse.redirect(new URL("/customer/dashboard", req.url));
       }
     }
-  } else {
-    // Redirect unauthenticated users trying to access protected pages
-    if (
-      url.pathname.startsWith("/seller") &&
-      !sellerPaths.includes(url.pathname)
-    ) {
-      return NextResponse.redirect(new URL("/seller/login", req.url));
+
+    if (pathname.startsWith("/seller")) {
+      if (userRole !== "seller") {
+        return NextResponse.redirect(new URL("/customer/dashboard", req.url));
+      }
+    } else if (pathname.startsWith("/customer")) {
+      if (userRole !== "customer") {
+        return NextResponse.redirect(new URL("/seller/dashboard", req.url));
+      }
     }
-    if (
-      url.pathname.startsWith("/customer") &&
-      !customerPaths.includes(url.pathname)
-    ) {
+
+    return NextResponse.next();
+  }
+
+  if (!token) {
+    if (publicRoutes.includes(pathname)) {
+      return NextResponse.next();
+    }
+
+    if (pathname.startsWith("/seller")) {
+      return NextResponse.redirect(new URL("/seller/login", req.url));
+    } else if (pathname.startsWith("/customer")) {
       return NextResponse.redirect(new URL("/customer/login", req.url));
     }
   }
@@ -52,7 +53,6 @@ export async function middleware(req) {
   return NextResponse.next();
 }
 
-// Specify the paths to apply middleware
 export const config = {
-  matcher: ["/seller/:path*", "/customer/:path*"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
