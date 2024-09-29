@@ -4,24 +4,24 @@ import FooterComp from "./Footer";
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-[#ddddd4] shadow-md">
+      <header className="bg-[#ddddd4] shadow-lg">
         <nav className="container mx-auto p-6 flex justify-between items-center">
-          <div className="text-2xl font-bold text-black hover:text-sky-600">
+          <div className="text-3xl font-bold text-black hover:text-blue-600 transition">
             Salesi
           </div>
-          <ul className="flex space-x-6">
+          <ul className="flex space-x-8">
             <li>
               <Link
-                href="/admin/login"
-                className="text-black hover:text-sky-600 text-xl font-medium"
+                href="/seller/login"
+                className="text-black hover:text-blue-600 text-lg font-semibold transition"
               >
-                Admin
+                Seller
               </Link>
             </li>
             <li>
               <Link
                 href="/customer/login"
-                className="text-black hover:text-sky-600 text-xl font-medium"
+                className="text-black hover:text-blue-600 text-lg font-semibold transition"
               >
                 Customer
               </Link>
@@ -30,50 +30,47 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <div className=" bg-green-400 min-h-screen">
-        <main className="flex-1 mx-auto p-6">
-          <section className="text-center my-20">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6">
-              Welcome to Sales Management System
+      <div className="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen">
+        <main className="flex-1 mx-auto p-8">
+          <section className="text-center my-24">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-white drop-shadow-md mb-6">
+              Manage Your Sales Seamlessly
             </h1>
-            <p className="text-xl md:text-2xl text-gray-800 mb-8">
-              The ultimate platform to manage your sales, track product
-              availability, and keep your customers happy.
+            <p className="text-2xl md:text-3xl text-gray-100 mb-10">
+              Your one-stop solution for tracking sales, products, and customer
+              satisfaction.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-white p-8 h-72 rounded-lg shadow-md hover:shadow-lg transition">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                  Admin Features
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="bg-white p-10 h-80 rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">
+                  Seller Features
                 </h2>
-                <p className="text-gray-800 text-lg mb-4">
-                  Admins can add products, manage sales, track product
-                  availability, and oversee customer orders. Streamline your
-                  operations and improve efficiency with our powerful admin
-                  dashboard.
+                <p className="text-gray-700 text-lg mb-6">
+                  Add and manage products, track availability, and oversee
+                  customer orders with ease using our seller dashboard.
                 </p>
                 <Link
-                  href="/admin/login"
-                  className="bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition"
+                  href="/seller/login"
+                  className="bg-blue-600 text-white py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition"
                 >
-                  Admin Page
+                  Explore Seller Dashboard
                 </Link>
               </div>
 
-              <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition">
-                <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              <div className="bg-white p-10 h-80 rounded-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">
                   Customer Features
                 </h2>
-                <p className="text-gray-800 text-lg mb-4">
-                  Customers can browse available products, make purchases, and
-                  track their order history. Stay informed and shop with ease
-                  using our user-friendly portal.
+                <p className="text-gray-700 text-lg mb-6">
+                  Browse products, track your orders, and shop with ease using
+                  our intuitive customer portal.
                 </p>
                 <Link
                   href="/customer/login"
-                  className="bg-gray-800 text-white py-2 px-4 rounded-lg shadow hover:bg-gray-700 transition"
+                  className="bg-gray-800 text-white py-3 px-6 rounded-lg shadow-md hover:bg-gray-700 transition"
                 >
-                  Customer Page
+                  Access Customer Portal
                 </Link>
               </div>
             </div>

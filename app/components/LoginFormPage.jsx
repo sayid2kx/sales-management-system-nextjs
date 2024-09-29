@@ -43,10 +43,10 @@ export default function LoginForm({ userType }) {
   }, [msg]);
 
   return (
-    <div className="min-h-screen bg-green-400 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          {userType === "admin" ? "Admin Login" : "Customer Login"}
+          {userType === "seller" ? "Seller Login" : "Customer Login"}
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">

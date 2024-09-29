@@ -8,7 +8,7 @@ export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   // Define the URL paths for different roles
-  const adminPaths = ["/admin/login", "/admin/register"];
+  const sellerPaths = ["/seller/login", "/seller/register"];
   const customerPaths = ["/customer/login", "/customer/register"];
 
   // Get the current URL path
@@ -22,10 +22,10 @@ export async function middleware(req) {
     const userRole = token.role;
 
     // Restrict access based on role
-    if (userRole === "admin") {
-      if (adminPaths.includes(url.pathname)) {
+    if (userRole === "seller") {
+      if (sellerPaths.includes(url.pathname)) {
         // Redirect authenticated sellers away from login/register pages
-        return NextResponse.redirect(new URL("/admin/dashboard", req.url));
+        return NextResponse.redirect(new URL("/seller/dashboard", req.url));
       }
     } else if (userRole === "customer") {
       if (customerPaths.includes(url.pathname)) {
@@ -36,10 +36,10 @@ export async function middleware(req) {
   } else {
     // Redirect unauthenticated users trying to access protected pages
     if (
-      url.pathname.startsWith("/admin") &&
-      !adminPaths.includes(url.pathname)
+      url.pathname.startsWith("/seller") &&
+      !sellerPaths.includes(url.pathname)
     ) {
-      return NextResponse.redirect(new URL("/admin/login", req.url));
+      return NextResponse.redirect(new URL("/seller/login", req.url));
     }
     if (
       url.pathname.startsWith("/customer") &&
@@ -54,5 +54,5 @@ export async function middleware(req) {
 
 // Specify the paths to apply middleware
 export const config = {
-  matcher: ["/admin/:path*", "/customer/:path*"],
+  matcher: ["/seller/:path*", "/customer/:path*"],
 };

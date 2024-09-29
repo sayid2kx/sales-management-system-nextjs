@@ -1,12 +1,14 @@
 import CustomerNavabarComp from "@/app/components/CustomerNavbar";
+import CustomerOrders from "@/app/components/CustomerOrder";
 import FooterComp from "@/app/components/Footer";
-import AllProductsShowToCustomer from "@/app/components/ProductShowToCustomer";
 
-export default function CustomerDashboard() {
+export default function CustomerOrderPage() {
   return (
     <div>
       <CustomerNavabarComp />
-      <AllProductsShowToCustomer />
+      <div className="min-h-screen">
+        <CustomerOrders />
+      </div>
       <FooterComp />
     </div>
   );

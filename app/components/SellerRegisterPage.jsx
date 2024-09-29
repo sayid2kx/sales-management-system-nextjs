@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function RegisterForm({ role }) {
+export default function SellerRegisterForm({ role }) {
   const [formData, setFormData] = useState({
+    shopname: "",
     fullname: "",
     email: "",
     username: "",
@@ -30,6 +31,7 @@ export default function RegisterForm({ role }) {
     e.preventDefault();
 
     if (
+      !formData.shopname ||
       !formData.fullname ||
       !formData.username ||
       !formData.email ||
@@ -72,6 +74,7 @@ export default function RegisterForm({ role }) {
 
       if (res.ok) {
         setFormData({
+          shopname: "",
           fullname: "",
           email: "",
           username: "",
@@ -100,13 +103,26 @@ export default function RegisterForm({ role }) {
   }, [msg]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-green-300 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          {role === "seller" ? "seller Registration" : "Customer Registration"}
+          {role === "seller" ? "Seller Registration" : "Customer Registration"}
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="w-full">
+            <label className="block text-xs font-medium text-gray-800 uppercase mb-1">
+              Shop Name
+            </label>
+            <input
+              type="text"
+              name="shopname"
+              placeholder="Shop Name"
+              className="w-full pb-1 border-b-2 border-gray-300 focus:border-green-500 focus:outline-none transition-colors"
+              value={formData.shopname}
+              onChange={handleChange}
+            />
+          </div>
           <div className="w-full">
             <label className="block text-xs font-medium text-gray-800 uppercase mb-1">
               Full Name

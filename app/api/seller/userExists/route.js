@@ -1,13 +1,13 @@
 import { connectToMongoDB } from "@/lib/database";
 import { NextResponse } from "next/server";
-import Customer from "@/app/models/customer";
+import Seller from "@/app/models/seller";
 
 export async function POST(req) {
   try {
     await connectToMongoDB();
     const { email, username } = await req.json();
 
-    const user = await Customer.findOne({
+    const user = await Seller.findOne({
       $or: [{ email }, { username }],
     }).select("_id email username");
 
@@ -21,9 +21,9 @@ export async function POST(req) {
       );
     }
   } catch (error) {
-    console.error("Error checking customer existence:", error);
+    console.error("Error checking seller existence:", error);
     return NextResponse.json(
-      { message: "An error occurred while checking customer existence." },
+      { message: "An error occurred while checking seller existence." },
       { status: 500 }
     );
   }

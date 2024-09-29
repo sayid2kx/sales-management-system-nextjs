@@ -1,8 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 export default function AddProductForm() {
+  const { data: session } = useSession();
+
   const [formData, setFormData] = useState({
     title: "",
     category: "Mobile",
@@ -32,13 +35,19 @@ export default function AddProductForm() {
         formDataToSend.append(key, value);
       });
 
-      const response = await fetch("/api/admin/addproduct", {
+      if (session) {
+        formDataToSend.append("sellerEmail", session?.user?.email);
+      } else {
+        console.log("Fetching from user session isn't succesfull");
+      }
+
+      const response = await fetch("/api/seller/addproduct", {
         method: "POST",
         body: formDataToSend,
       });
 
       if (response.ok) {
-        router.push("/admin/dashboard");
+        router.push("/seller/dashboard");
       } else {
         const error = await response.json();
         setError(error.message);
@@ -51,7 +60,7 @@ export default function AddProductForm() {
   };
 
   return (
-    <div className="min-h-screen bg-green-500 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
         <h1 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Add Product

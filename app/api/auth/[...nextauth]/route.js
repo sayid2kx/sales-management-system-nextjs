@@ -1,7 +1,7 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToMongoDB } from "@/lib/database";
-import Admin from "@/app/models/admin";
+import Seller from "@/app/models/seller";
 import Customer from "@/app/models/customer";
 import bcrypt from "bcryptjs";
 
@@ -24,8 +24,8 @@ export const authOptions = {
           let UserModel;
           let user;
 
-          if (userType === "admin") {
-            UserModel = Admin;
+          if (userType === "seller") {
+            UserModel = Seller;
           } else if (userType === "customer") {
             UserModel = Customer;
           } else {
