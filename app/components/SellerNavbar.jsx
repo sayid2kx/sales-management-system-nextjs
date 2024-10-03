@@ -31,6 +31,12 @@ export default function SellerNavabarComp() {
               All Products
             </Link>
             <Link
+              href="/seller/dashboard/my-products"
+              className="text-black text-lg hover:text-sky-400"
+            >
+              My Products
+            </Link>
+            <Link
               href="/seller/dashboard/sales-info"
               className="text-black text-lg hover:text-sky-400"
             >
@@ -75,6 +81,12 @@ export default function SellerNavabarComp() {
               className="block w-full text-center px-3 py-2 rounded-md text-base font-medium text-black hover:bg-gray-400 hover:text-white"
             >
               All Products
+            </Link>
+            <Link
+              href="/seller/dashboard/my-products"
+              className="block w-full text-center px-3 py-2 rounded-md text-base font-medium text-black hover:bg-gray-400 hover:text-white"
+            >
+              My Products
             </Link>
             <Link
               href="/seller/dashboard/sales-info"

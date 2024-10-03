@@ -6,7 +6,7 @@ export default function CustomerOrderPage() {
   return (
     <div>
       <CustomerNavabarComp />
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400">
         <CustomerOrders />
       </div>
       <FooterComp />

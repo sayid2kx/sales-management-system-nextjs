@@ -49,12 +49,12 @@ const CustomerOrders = () => {
   };
 
   if (status === "loading") {
-    return <p className="text-center mt-64 text-2xl">Loading...</p>;
+    return <p className="text-center p-32 text-2xl">Loading...</p>;
   }
 
   if (status === "unauthenticated") {
     return (
-      <p className="text-center mt-64 text-2xl">
+      <p className="text-center p-64 text-2xl">
         Please log in to view your orders.
       </p>
     );
@@ -62,14 +62,16 @@ const CustomerOrders = () => {
 
   if (orders.length === 0) {
     return (
-      <p className="text-center text-3xl mt-64 font-medium">No orders found</p>
+      <p className="text-base p-20 text-center md:text-4xl md:p-32 font-medium">
+        No orders found
+      </p>
     );
   }
 
   const totalAmount = orders.reduce((sum, order) => sum + order.totalPrice, 0);
 
   return (
-    <div className="p-16 bg-gradient-to-r from-green-400 via-teal-300 to-blue-400">
+    <div className="p-16">
       <h1 className="text-4xl font-bold text-center mb-10">Orders History</h1>
       <div className="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-lg space-y-8">
         {orders.map((order) => (

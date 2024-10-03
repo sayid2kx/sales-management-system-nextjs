@@ -49,7 +49,7 @@ export default function CustomerInfo() {
 
   if (customers.length === 0) {
     return (
-      <div className="text-center text-xl mx-auto w-96 h-12 rounded-full py-2 bg-purple-400 text-white border-2 border-blue-200">
+      <div className="text-base p-20 text-center md:text-4xl md:p-32 font-medium">
         No Customers Found
       </div>
     );

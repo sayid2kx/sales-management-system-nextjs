@@ -1,4 +1,3 @@
-// app/api/customers/route.js
 import { getServerSession } from "next-auth/next";
 import Order from "@/app/models/order";
 import { connectToMongoDB } from "@/lib/database";

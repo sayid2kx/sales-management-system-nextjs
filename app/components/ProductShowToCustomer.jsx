@@ -132,14 +132,14 @@ const AllProductsShowToCustomer = () => {
 
   if (products.length === 0) {
     return (
-      <p className="text-center text-4xl mt-64 font-medium min-h-screen">
+      <p className="text-base p-20 text-center md:text-4xl md:p-32 font-medium">
         No products found
       </p>
     );
   }
 
   return (
-    <div className="p-16 min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400">
+    <div className="p-16">
       <div className="mb-3 space-x-1 flex justify-center">
         <button
           onClick={() => handleSort("price")}

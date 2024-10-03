@@ -6,7 +6,9 @@ export default function ProductShowpage() {
   return (
     <div>
       <SellerNavabarComp />
-      <AllProductsShow />
+      <div className="min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400">
+        <AllProductsShow />
+      </div>
       <FooterComp />
     </div>
   );

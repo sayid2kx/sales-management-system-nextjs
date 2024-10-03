@@ -6,7 +6,9 @@ export default function CustomerDashboard() {
   return (
     <div>
       <CustomerNavabarComp />
-      <AllProductsShowToCustomer />
+      <div className="min-h-screen bg-gradient-to-r from-green-400 via-teal-300 to-blue-400">
+        <AllProductsShowToCustomer />
+      </div>
       <FooterComp />
     </div>
   );

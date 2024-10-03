@@ -20,9 +20,12 @@ export default function AvailableProducts() {
       );
 
       const data = await res.json();
-      setProducts(data);
+
+      // Ensure that products is always an array
+      setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Fetch error:", error);
+      setProducts([]); // Set products to an empty array if an error occurs
     } finally {
       setLoading(false);
     }
@@ -38,7 +41,7 @@ export default function AvailableProducts() {
 
   if (products.length === 0) {
     return (
-      <div className="text-center text-xl mx-auto w-96 h-12 rounded-full py-2 bg-purple-400 text-white border-2 border-blue-200">
+      <div className="text-base p-20 text-center md:text-4xl md:p-32 font-medium">
         No Products Available
       </div>
     );

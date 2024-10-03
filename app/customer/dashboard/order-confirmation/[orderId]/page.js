@@ -31,9 +31,7 @@ const OrderConfirmation = () => {
 
   if (!order) {
     return (
-      <div className="text-center text-4xl mt-64 font-medium min-h-screen">
-        Loading...
-      </div>
+      <div className="text-center text-4xl p-64 font-medium">Loading...</div>
     );
   }
 

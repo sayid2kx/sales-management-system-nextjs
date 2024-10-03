@@ -39,7 +39,7 @@ const CustomerProfilePage = () => {
   if (!customer) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold text-gray-600 bg-white px-6 py-3 rounded-lg shadow-md">
+        <p className="text-base p-20 text-center md:text-4xl md:p-32 font-medium">
           No customer data found
         </p>
       </div>
